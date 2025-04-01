@@ -12,7 +12,7 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
     }
     return {
       status: result.status,
-      value: result.reason,
+      value: String(result.reason),
     };
   });
 }
