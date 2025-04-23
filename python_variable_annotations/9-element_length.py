@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import typing
 """rock bap dooda diwap diwap diwap"""
+import typing
 
 
 def element_length(
