@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
+"""Module that contains an asynchronous generator"""
 import asyncio
 import random
 import typing
-"""Module that contains an asynchronous generator"""
 
 
 async def async_generator() -> typing.AsyncGenerator[float, None]:
