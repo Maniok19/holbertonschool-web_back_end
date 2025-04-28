@@ -1,16 +1,11 @@
 #!/usr/bin/env python3
-"""
-Async Comprehension module
-"""
-import typing
+"""Async Comprehension module blabla blabl blabla blabl blabl"""
+
 async_generator = __import__('0-async_generator').async_generator
 
 
-async def async_comprehension() -> typing.List[float]:
-    """
-    Collects 10 random numbers using async comprehension
-    Returns: List of 10 random float numbers
-    """
+async def async_comprehension() -> list:
+    """Async Comprehension module blabla blabl blabla blabl blabl"""
     lif = []
     async for i in async_generator():
         lif.append(i)
