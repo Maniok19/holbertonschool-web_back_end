@@ -10,4 +10,5 @@ async def print_yielded_values():
     print(result)
 
 res = asyncio.run(print_yielded_values())
+print(res)
 print(type(res))
