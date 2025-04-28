@@ -39,6 +39,8 @@ class Server:
             self,
             page: int = 1,
             page_size: int = 10) -> List[List]:
+        """Server class to paginate a database of popular baby names.
+        """
         assert isinstance(
             page,
             int) and page > 0, "page must be a positive integer"
