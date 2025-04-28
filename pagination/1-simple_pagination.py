@@ -47,6 +47,8 @@ class Server:
             int) and page_size > 0, "page_size must be a positive integer"
 
         dataset = self.dataset()
+        if page > math.ceil(len(dataset) / page_size):
+            return []
         start, end = index_range(page, page_size)
 
         if start >= len(dataset):
