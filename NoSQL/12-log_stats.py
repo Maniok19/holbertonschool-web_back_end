@@ -18,11 +18,11 @@ def task_12():
 
     print(f'{nb_logs} logs')
     print('Methods:')
-    print(f'    method POST: {post}')
-    print(f'    method PUT: {put}')
-    print(f'    method PATCH: {patch}')
-    print(f'    method GET: {get}')
-    print(f'    method DELETE: {delete}')
+    print(f'\tmethod POST: {post}'.expandtabs(4))
+    print(f'\tmethod PUT: {put}'.expandtabs(4))
+    print(f'\tmethod PATCH: {patch}'.expandtabs(4))
+    print(f'\tmethod GET: {get}'.expandtabs(4))
+    print(f'\tmethod DELETE: {delete}'.expandtabs(4))
     print(f'{status} status check')
     client.close()
 
