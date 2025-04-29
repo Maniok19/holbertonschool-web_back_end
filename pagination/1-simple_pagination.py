@@ -4,7 +4,6 @@ Main file blabla blabl bla blabla blabla
 """
 from typing import Tuple, List
 import csv
-import math
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
@@ -12,7 +11,7 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     Main file blabla blabl bla blabla blabla
     """
     start_index = (page - 1) * page_size
-    end_index = page_size * page
+    end_index = page * page_size
     return (start_index, end_index)
 
 
@@ -35,25 +34,17 @@ class Server:
 
         return self.__dataset
 
-    def get_page(
-            self,
-            page: int = 1,
-            page_size: int = 10) -> List[List]:
-        """Server class to paginate a database of popular baby names.
-        """
-        assert isinstance(
-            page,
-            int) and page > 0, "page must be a positive integer"
-        assert isinstance(
-            page_size,
-            int) and page_size > 0, "page_size must be a positive integer"
 
-        dataset = self.dataset()
-        if page > math.ceil(len(dataset) / page_size):
-            return []
-        start, end = index_range(page, page_size)
+def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+    """Return a page of the dataset."""
+    assert isinstance(page, int) and page > 0, "positive integer"
+    assert isinstance(page_size, int) and page_size > 0, "positive integer"
 
-        if start >= len(dataset):
-            return []
+    start, end = index_range(page, page_size)
+    dataset = self.dataset()
 
-        return dataset[start:end]
+    # Check if the requested page is beyond the available data
+    if start >= len(dataset):
+        return []
+
+    return dataset[start:end]
