@@ -5,7 +5,7 @@ from pymongo import MongoClient
 
 def task_12():
     """wababa baba baba baba baba"""
-    client = MongoClient()
+    client = MongoClient('mongodb://127.0.0.1:27017')
     collec = client.logs.nginx
 
     nb_logs = collec.count_documents({})
