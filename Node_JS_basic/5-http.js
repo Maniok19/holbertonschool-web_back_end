@@ -41,11 +41,11 @@ const app = http.createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.write('This is the list of our students\n');
     const database = process.argv[2];
     const list = await countStudents(database);
-    res.end(list);
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.write(`This is the list of our students\n${list}`);
+    res.end();
   }
   res.end();
 }).listen(1245);
