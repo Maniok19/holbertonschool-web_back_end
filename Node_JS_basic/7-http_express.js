@@ -7,7 +7,7 @@ async function countStudents(path) {
 
     const students = lines.slice(1);
 
-    console.log(`Number of students: ${students.length}`);
+    let result = (`Number of students: ${students.length}\n`);
 
     const fieldGroups = {};
 
@@ -23,10 +23,26 @@ async function countStudents(path) {
     });
     for (const field in fieldGroups) {
       const studentsList = fieldGroups[field].join(', ');
-      console.log(`Number of students in ${field}: ${fieldGroups[field].length}. List: ${studentsList}`);
+      result += (`Number of students in ${field}: ${fieldGroups[field].length}. List: ${studentsList}\n`);
     }
+    result = result.trim();
+    return result;
   } catch (error) {
     throw new Error('Cannot load the database');
   }
 }
-module.exports = countStudents;
+
+const express = require('express');
+
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello Holberton School!');
+});
+app.get('/students', async (req, res) => {
+  res.set('Content-Type', 'text/plain');
+  const database = process.argv[2];
+  const list = await countStudents(database);
+  res.send(`This is the list of our students\n${list}`);
+});
+app.listen(1245);
+module.exports = app;
