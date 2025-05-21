@@ -1,5 +1,6 @@
+const fs = require('fs').promises;
+
 async function countStudents(path) {
-  const fs = require('fs').promises;
   try {
     const data = await fs.readFile(path, 'utf-8');
 
@@ -22,8 +23,10 @@ async function countStudents(path) {
       fieldGroups[field].push(firstName);
     });
     for (const field in fieldGroups) {
-      const studentsList = fieldGroups[field].join(', ');
-      result += (`Number of students in ${field}: ${fieldGroups[field].length}. List: ${studentsList}\n`);
+      if (Object.prototype.hasOwnProperty.call(fieldGroups, field)) {
+        const studentsList = fieldGroups[field].join(', ');
+        console.log(`Number of students in ${field}: ${fieldGroups[field].length}. List: ${studentsList}`);
+      }
     }
     result = result.trim();
     return result;
@@ -31,9 +34,9 @@ async function countStudents(path) {
     throw new Error('Cannot load the database');
   }
 }
-const app = require('http');
+const http = require('http');
 
-app.createServer(async (req, res) => {
+const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello Holberton School!');
