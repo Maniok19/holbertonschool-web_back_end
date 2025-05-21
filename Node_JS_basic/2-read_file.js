@@ -1,6 +1,6 @@
-function countStudents(path) {
-  const fs = require('fs');
+const fs = require('fs');
 
+function countStudents(path) {
   try {
     const data = fs.readFileSync(path, 'utf-8');
 
@@ -23,8 +23,10 @@ function countStudents(path) {
       fieldGroups[field].push(firstName);
     });
     for (const field in fieldGroups) {
-      const studentsList = fieldGroups[field].join(', ');
-      console.log(`Number of students in ${field}: ${fieldGroups[field].length}. List: ${studentsList}`);
+      if (Object.prototype.hasOwnProperty.call(fieldGroups, field)) {
+        const studentsList = fieldGroups[field].join(', ');
+        console.log(`Number of students in ${field}: ${fieldGroups[field].length}. List: ${studentsList}`);
+      }
     }
   } catch (error) {
     throw new Error('Cannot load the database');
