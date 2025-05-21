@@ -1,5 +1,6 @@
+const fs = require('fs').promises;
+
 async function countStudents(path) {
-  const fs = require('fs').promises;
   try {
     const data = await fs.readFile(path, 'utf-8');
 
@@ -22,8 +23,10 @@ async function countStudents(path) {
       fieldGroups[field].push(firstName);
     });
     for (const field in fieldGroups) {
-      const studentsList = fieldGroups[field].join(', ');
-      console.log(`Number of students in ${field}: ${fieldGroups[field].length}. List: ${studentsList}`);
+      if (Object.prototype.hasOwnProperty.call(fieldGroups, field)) {
+        const studentsList = fieldGroups[field].join(', ');
+        console.log(`Number of students in ${field}: ${fieldGroups[field].length}. List: ${studentsList}`);
+      }
     }
   } catch (error) {
     throw new Error('Cannot load the database');
