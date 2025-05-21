@@ -1,5 +1,5 @@
 function countStudents(path) {
-  const fs = require('node:fs');
+  const fs = require('fs');
 
   try {
     const data = fs.readFileSync(path, 'utf-8');
